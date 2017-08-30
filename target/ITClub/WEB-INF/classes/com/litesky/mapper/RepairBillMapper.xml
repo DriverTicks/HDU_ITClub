@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.litesky.dao.RepairBillDao">
+
+    <insert id="insertBill" parameterType="RepairBill">
+        INSERT INTO REPAIRBILL(pid,createTime,name,gender,qq,phone,studentID,address,remark)VALUES
+        (
+          #{pid},#{createTime},#{name},#{gender},#{QQ},#{phone},#{studentID},
+          #{address},#{remark}
+        )
+    </insert>
+
+    <select id="getAllBills" resultType="RepairBill">
+        SELECT * FROM REPAIRBILL
+    </select>
+</mapper>
