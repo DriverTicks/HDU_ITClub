@@ -1,5 +1,7 @@
 package com.litesky.dao;
 
-public interface UserDao {
+import com.litesky.model.User;
 
+public interface UserDao {
+    public User findUserByName(String username);
 }

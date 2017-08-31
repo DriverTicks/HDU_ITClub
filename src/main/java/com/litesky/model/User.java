@@ -11,6 +11,7 @@ public class User {
     private String phone;
     private String studentNumber;
     private String gender;
+    private String email;
 
     public Long getId() {
         return id;
@@ -58,5 +59,13 @@ public class User {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
