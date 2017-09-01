@@ -20,9 +20,8 @@
 </head>
 <body>
 <div class="login">
-    <h1><a href="index.html">Minimal </a></h1>
+    <h1><a href="index.html">登录 </a></h1>
     <div class="login-bottom">
-        <h2>Login</h2>
         <form action="/login" method="post">
             <div class="col-md-6">
                 <div class="login-mail">
@@ -30,21 +29,21 @@
                     <i class="glyphicon glyphicon-user"></i>
                 </div>
                 <div class="login-mail">
-                    <input type="password" placeholder="Password" required="" name="password">
+                    <input type="password" placeholder="密码" required="" name="password">
                     <i class="glyphicon glyphicon-lock"></i>
                 </div>
                 <a class="news-letter " href="#">
-                    <label class="checkbox1"><input type="checkbox" name="checkbox"><i> </i>Remember Password</label>
+                    <label class="checkbox"><input type="checkbox" name="checkbox">记住密码</label>
                 </a>
 
 
             </div>
             <div class="col-md-6 login-do">
                 <label class="hvr-shutter-in-horizontal login-sub">
-                    <input type="submit" value="login">
+                    <input type="submit" value="登录">
                 </label>
-                <p>Do not have an account?</p>
-                <a href="signup.html" class="hvr-shutter-in-horizontal">Signup</a>
+                <p>还没有账号吗？</p>
+                <a href="signup.html" class="hvr-shutter-in-horizontal">注册</a>
             </div>
 
             <div class="clearfix"></div>
