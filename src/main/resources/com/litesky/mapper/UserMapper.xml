@@ -6,4 +6,13 @@
           SELECT *FROM USER WHERE NAME =#{username}
         ]]>
     </select>
+
+    <insert id="insertUser" parameterType="User">
+        INSERT INTO USER(name,gender,phone,qq,email,password)
+        VALUES (#{name},#{gender},#{phone},#{QQ},#{email},#{password})
+    </insert>
+
+    <update id="updateUser" parameterType="User">
+
+    </update>
 </mapper>

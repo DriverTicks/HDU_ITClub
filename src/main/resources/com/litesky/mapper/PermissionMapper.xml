@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.litesky.dao.PermissionDao">
+
+    <!--<insert id="insertPermission" parameterType="Permission">-->
+        <!--<![CDATA[-->
+          <!--INSERT INTO Permission(id,url,name,state,createid,createTime)-->
+          <!--VALUES-->
+          <!--(#{id},#{url},#{name},#{state},#{createid},#{createTime})-->
+        <!--]]>-->
+    <!--</insert>-->
+
+    <insert id="insertPermission" parameterType="Permission">
+        <![CDATA[
+          INSERT INTO PERMISSION(url,name)VALUES (#{url},#{name})
+        ]]>
+    </insert>
+
+    <!--<insert id="insertRole_Permission" parameterType="Map">-->
+        <!--INSERT INTO role_permission(id,role_id,permission_id)-->
+        <!--VALUES-->
+        <!--(#{id},#{roleId},#{permissionId})-->
+    <!--</insert>-->
+
+    <insert id="insertRole_Permission" parameterType="Map">
+        <![CDATA[
+          INSERT INTO ROLE_PERMISSION(role_id,permission_id)VALUES (#{roleId},#{permissionId})
+        ]]>
+    </insert>
+
+    <!--<select id="findRolebyUserid" parameterType="String" resultType="String">-->
+        <!--SELECT a.name  from role a LEFT JOIN USER_ROLE b ON b.ROLE_ID=a.ID  WHERE b.USER_ID=#{value}-->
+    <!--</select>-->
+
+    <select id="findRolebyUserid" parameterType="int" resultType="String">
+        SELECT a.name FROM ROLE a LEFT JOIN ROLE_USER b ON b.roleId=a.id WHERE b.userId=#{id}
+    </select>
+
+    <!--<select id="findPermissionbyUserid" parameterType="String" resultType="String">-->
+        <!--SELECT a.url from PERMISSION a LEFT JOIN Role_PERMISSION b ON b.PERMISSION_ID=a.ID-->
+        <!--LEFT JOIN USER_ROLE c on c.role_id = b.role_id   WHERE c.USER_ID=#{value}-->
+    <!--</select>-->
+
+    <select id="findPermissionbyUserid" parameterType="int" resultType="String">
+        SELECT a.url FROM PERMISSION a LEFT JOIN ROLE_PERMISSION b ON b.permission_id=a.id
+        LEFT JOIN ROLE_USER c ON c.roleId = b.role_id WHERE c.userId=#{id}
+    </select>
+
+    <!--user-->
+    <!--<select id="finduserbyNP" parameterType="Map" resultType="User">-->
+        <!--select * from users where username=#{username} and password =#{password}-->
+    <!--</select>-->
+
+    <select id="finduserbyNP" parameterType="Map" resultType="User">
+        SELECT  * FROM USER WHERE name=#{username} AND password=#{password}
+    </select>
+
+    <delete id="deleteSameRole_Permission">
+        <![CDATA[
+       DELETE ROLE_PERMISSION where PERMISSION_ID in(
+            SELECT A.id
+              FROM (SELECT ROW_NUMBER() OVER(PARTITION BY em.URL  ORDER BY EM.createTime desc) R,em.id
+              FROM PERMISSION EM) A where a.r>1) and ROLE_ID=0
+        ]]>
+    </delete>
+
+    <delete id="deleteSamePermission">
+        <![CDATA[
+        DELETE permission t where t.id in (SELECT A.id
+                  FROM (SELECT ROW_NUMBER() OVER(PARTITION BY em.URL  ORDER BY EM.createTime desc) R,em.id
+                  FROM PERMISSION EM) A where a.r>1)
+        ]]>
+    </delete>
+
+</mapper>

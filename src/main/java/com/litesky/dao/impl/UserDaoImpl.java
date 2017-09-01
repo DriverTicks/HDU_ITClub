@@ -16,4 +16,9 @@ public class UserDaoImpl implements UserDao {
     public User findUserByName(String username) {
         return sqlSessionTemplate.selectOne("com.litesky.mapper.UserMapper.findUserByName",username);
     }
+
+    @Override
+    public int insertUser(User user) {
+        return sqlSessionTemplate.insert("com.litesky.mapper.UserMapper.insertUser",user);
+    }
 }

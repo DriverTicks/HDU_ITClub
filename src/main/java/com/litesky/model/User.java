@@ -5,22 +5,14 @@ import org.apache.ibatis.type.Alias;
 import javax.naming.Name;
 @Alias("user")
 public class User {
-    private Long id;
+    private int id;
     private String name;
     private String password;
     private String phone;
-    private String studentNumber;
     private String gender;
     private String email;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
+    private int state;
+    private String QQ;
     public String getName() {
         return name;
     }
@@ -45,14 +37,6 @@ public class User {
         this.phone = phone;
     }
 
-    public String getStudentNumber() {
-        return studentNumber;
-    }
-
-    public void setStudentNumber(String studentNumber) {
-        this.studentNumber = studentNumber;
-    }
-
     public String getGender() {
         return gender;
     }
@@ -67,5 +51,43 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
+
+    public String getQQ() {
+        return QQ;
+    }
+
+    public void setQQ(String QQ) {
+        this.QQ = QQ;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", phone='" + phone + '\'' +
+                ", gender='" + gender + '\'' +
+                ", email='" + email + '\'' +
+                ", state=" + state +
+                ", QQ='" + QQ + '\'' +
+                '}';
     }
 }

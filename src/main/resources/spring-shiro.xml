@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+        <!--缓存管理器，使用Ehcache实现-->
+       <bean id="shiroCacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+           <property name="cacheManagerConfigFile" value="classpath:ehcache.xml"/>
+       </bean>
+
+        <!--会话id生成器-->
+        <bean id="sessionIdGenerator" class="org.apache.shiro.session.mgt.eis.JavaUuidSessionIdGenerator"/>
+
+        <!--会话cookie模板-->
+        <bean id="sessionIdCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+            <constructor-arg value="sid"/>
+            <property name="httpOnly" value="true"/>
+            <property name="maxAge" value="180000"/>
+        </bean>
+
+        <!--会话dao-->
+        <bean id="sessionDao" class="org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO">
+            <property name="activeSessionsCacheName" value="shiro-activeSessionCache"/>
+            <property name="sessionIdGenerator" ref="sessionIdGenerator"/>
+        </bean>
+
+        <!--会话验证调度器-->
+        <bean id="sessionValidationScheduler" class="org.apache.shiro.session.mgt.ExecutorServiceSessionValidationScheduler">
+            <property name="sessionManager" ref="sessionManager"/>
+        </bean>
+
+        <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+            <property name="globalSessionTimeout" value="18000000"/>
+            <property name="deleteInvalidSessions" value="true"/>
+            <property name="sessionValidationSchedulerEnabled" value="true"/>
+            <property name="sessionValidationScheduler" ref="sessionValidationScheduler"/>
+            <property name="sessionDAO" ref="sessionDao"/>
+            <property name="sessionIdCookie.domain" value="com.test"/>
+            <property name="sessionIdCookie.name" value="jsid"/>
+            <property name="sessionIdCookie.path" value="/"/>
+            <property name="sessionIdCookieEnabled" value="true"/>
+            <property name="sessionIdCookie" ref="sessionIdCookie"/>
+        </bean>
+
+        <!--安全管理器-->
+        <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+            <property name="realm" ref="shiroRealm"/>
+            <property name="sessionManager" ref="sessionManager"/>
+            <property name="cacheManager" ref="shiroCacheManager"/>
+        </bean>
+
+        <!--自定义realm-->
+        <bean id="shiroRealm" class="com.litesky.Realm.MyRealm"/>
+
+            <!--shiroFiter-->
+        <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+            <property name="securityManager" ref="securityManager"/>
+            <property name="loginUrl" value="/login"/>
+            <property name="successUrl" value="/home/index"/>
+            <property name="unauthorizedUrl" value="/login"/>
+            <property name="filterChainDefinitions">
+                <value>
+                    /login/** = anon
+                    /test/** =anon
+                    /advice_Email/** =anon
+                    /logout = logout
+                    /resources/**= anon
+                    /** = user
+                </value>
+            </property>
+        </bean>
+
+        <!--配置退出登录后跳转的-->
+        <bean id="logout" class="org.apache.shiro.web.filter.authc.LogoutFilter">
+            <property name="redirectUrl" value="/login"/>
+        </bean>
+
+        <!--shiro集成spring-->
+        <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+            <property name="exceptionMappings">
+                <props>
+                    <prop key="org.apache.shiro.authz.UnauthenticatedException">/login</prop>
+                    <prop key="org.apache.shiro.authz.UnauthorizedException">/login</prop>
+                    <prop key="org.apache.shiro.authz.AuthorizationException">/login</prop>
+                </props>
+            </property>
+        </bean>
+
+        <!--Shiro声明周期管理-->
+        <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor">
+
+        </bean>
+</beans>
