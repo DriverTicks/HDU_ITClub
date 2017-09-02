@@ -61,6 +61,8 @@
             <property name="unauthorizedUrl" value="/login"/>
             <property name="filterChainDefinitions">
                 <value>
+                    /insert=anon
+                    /register=anon
                     /signup=anon
                     /login/** = anon
                     /test/** =anon

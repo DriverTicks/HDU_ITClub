@@ -49,7 +49,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <i class="glyphicon glyphicon-lock"></i>
                 </div>
                 <div class="login-mail">
-                    <input type="tel" placeholder="电话号码" required="" phone>
+                    <input type="tel" placeholder="电话号码" required="" name="phone">
                     <i class="glyphicon glyphicon-phone"></i>
                 </div>
                 <div class="login-mail">

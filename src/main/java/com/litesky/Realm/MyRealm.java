@@ -49,7 +49,7 @@ public class MyRealm extends AuthorizingRealm {
         UsernamePasswordToken usernamePasswordToken= (UsernamePasswordToken) token;
         Map<String,Object> userInfoMap=new HashMap<>();
         userInfoMap.put("username",usernamePasswordToken.getUsername());
-        userInfoMap.put("password", MD5Util.md5(String.valueOf(usernamePasswordToken.getPassword()),slat));
+        userInfoMap.put("password", MD5Util.md5(String.valueOf(usernamePasswordToken.getPassword())));
         try
         {
             List<User> users=permissonService.finduserbyNP(userInfoMap);

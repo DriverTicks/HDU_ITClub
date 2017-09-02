@@ -3,7 +3,7 @@
 <mapper namespace="com.litesky.dao.UserDao">
     <select id="findUserByName" parameterType="string" resultType="User">
         <![CDATA[
-          SELECT *FROM USER WHERE NAME =#{username}
+          SELECT *FROM USER WHERE NAME =#{VALUE }
         ]]>
     </select>
 

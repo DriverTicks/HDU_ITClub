@@ -20,4 +20,5 @@ public class UserServiceImpl implements UserService {
     public int insertUser(User user) {
         return userDao.insertUser(user);
     }
+
 }
