@@ -43,18 +43,26 @@
                     <input type="submit" value="登录">
                 </label>
                 <p>还没有账号吗？</p>
-                <a href="signup.html" class="hvr-shutter-in-horizontal">注册</a>
+                <a href="/signup" class="hvr-shutter-in-horizontal">注册</a>
             </div>
 
             <div class="clearfix"></div>
         </form>
     </div>
 </div>
-<!---->
-<footer class="copy-right">
-    <p style="text-align:center"> &copy; 2017 IT俱乐部. All Rights Reserved | Design by 柯帆 </p>
-</footer>
-<!---->
+
+
+
+<jsp:include page="common/foot.jsp"></jsp:include>
+
+
+<%--<footer class="copy-right">--%>
+    <%--<p style="text-align:center"> &copy; 2017 IT俱乐部. All Rights Reserved | Design by 柯帆 </p>--%>
+<%--</footer>--%>
+
+
+
+
 <!--scrolling js-->
 <script src="js/jquery.nicescroll.js"></script>
 <script src="js/scripts.js"></script>

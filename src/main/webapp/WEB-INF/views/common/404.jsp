@@ -29,10 +29,10 @@
 
 </div>
 
-
-<footer class="copy-right">
-    <p style="text-align:center"> &copy; 2017 IT俱乐部. All Rights Reserved | Design by 柯帆 </p>
-</footer>
+<jsp:include page="foot.jsp"></jsp:include>
+<%--<footer class="copy-right">--%>
+    <%--<p style="text-align:center"> &copy; 2017 IT俱乐部. All Rights Reserved | Design by 柯帆 </p>--%>
+<%--</footer>--%>
 <script src="js/jquery.nicescroll.js"></script>
 <script src="js/scripts.js"></script>
 </body>
