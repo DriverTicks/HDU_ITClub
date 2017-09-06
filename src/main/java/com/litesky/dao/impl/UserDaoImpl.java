@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Repository
 public class UserDaoImpl implements UserDao {
@@ -20,5 +21,10 @@ public class UserDaoImpl implements UserDao {
     @Override
     public int insertUser(User user) {
         return sqlSessionTemplate.insert("com.litesky.mapper.UserMapper.insertUser",user);
+    }
+
+    @Override
+    public List<User> getAllUser() {
+        return sqlSessionTemplate.selectList("com.litesky.mapper.UserMapper.getAllUser");
     }
 }

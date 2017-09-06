@@ -23,7 +23,7 @@ public class LoginController extends BaseController {
     @RequestMapping(value = "login",method = RequestMethod.GET)
     public String index()
     {
-        return "login";
+        return "user/login";
     }
 
     @RequestMapping(value = "login",method = RequestMethod.POST)

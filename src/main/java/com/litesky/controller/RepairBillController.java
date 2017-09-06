@@ -1,9 +1,12 @@
 package com.litesky.controller;
 
+import com.litesky.common.util.RepaireMan;
 import com.litesky.model.RepairBill;
 import com.litesky.service.RepairBillService;
+import com.litesky.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -14,24 +17,40 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("/repairBill")
-public class RepairBillController extends BaseController{
+public class  RepairBillController extends BaseController{
 
+    @Resource
+    private UserService userService;
     @Resource
     private RepairBillService repairBillService;
 
+
     @PostMapping("/insertBill")
-    @ResponseBody
-    public Map<String,Object> insertRepairBill(@RequestBody RepairBill repairBill)
-    {
-        System.out.println(repairBill.toString());
+
+    public ModelAndView insertRepairBill(RepairBill repairBill)
+    {   RepaireMan repaireMan=new RepaireMan();
+        repaireMan.addUsers(userService.getAllUser());
+        ModelAndView modelAndView=new ModelAndView();
+
         int code=repairBillService.insertBill(repairBill);
         if (code!=0)
         {
-            return returnMap(0,"插入成功",null);
+            modelAndView.setViewName("customer/forRepairingOk");
+            modelAndView.addObject(repaireMan.getUser());
+            return modelAndView;
         }else
         {
-            return returnMap(-1,"插入失败",null);
+            modelAndView.setViewName("common/404");
+            return modelAndView;
         }
+
+    }
+
+
+    @RequestMapping("/repairing")
+    public String forRepairing()
+    {
+        return "customer/forRepairing";
     }
 
     @GetMapping("/allBill")

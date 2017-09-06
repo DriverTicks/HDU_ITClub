@@ -54,7 +54,7 @@ public class RepairBill {
     /**
      * 学号
      */
-    private int StudentID;
+    private int studentID;
 
     /**
      * 地址
@@ -164,11 +164,11 @@ public class RepairBill {
     }
 
     public int getStudentID() {
-        return StudentID;
+        return studentID;
     }
 
     public void setStudentID(int studentID) {
-        StudentID = studentID;
+        this.studentID = studentID;
     }
 
     public String getAddress() {
@@ -239,7 +239,7 @@ public class RepairBill {
                 ", gender=" + gender +
                 ", QQ='" + QQ + '\'' +
                 ", phone='" + phone + '\'' +
-                ", StudentID=" + StudentID +
+                ", studentID=" + studentID +
                 ", address='" + address + '\'' +
                 ", remark='" + remark + '\'' +
                 ", SN='" + SN + '\'' +

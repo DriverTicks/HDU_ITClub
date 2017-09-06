@@ -4,15 +4,12 @@ import com.litesky.common.util.MD5Util;
 import com.litesky.dao.UserDao;
 import com.litesky.model.User;
 import com.litesky.service.UserService;
-import org.omg.CORBA.OBJ_ADAPTER;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
-import javax.annotation.Resources;
 import java.util.Map;
 
 @Controller
@@ -25,20 +22,18 @@ public class SignUpController extends BaseController{
     @RequestMapping(value = "signup",method = RequestMethod.GET)
     public String signup()
     {
-        return "register";
+        return "user/register";
     }
 
     @RequestMapping(value = "/register",method = RequestMethod.POST)
     public String register(User user)
     {
-        System.out.println(user.toString()+"-------------------------------------------");
-        System.out.println(user.toString());
         String username=user.getName();
         User userTemp=userService.findUserByName(username);
         if (userTemp!=null)
         {
 
-            return "register";
+            return "user/register";
         }
         user.setPassword(MD5Util.md5(user.getPassword()));
         int code=userService.insertUser(user);
@@ -49,7 +44,7 @@ public class SignUpController extends BaseController{
         }else
         {
             System.out.println("code"+code);
-            return "register";
+            return "user/register";
         }
 
     }

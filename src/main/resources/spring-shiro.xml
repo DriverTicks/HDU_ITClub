@@ -61,6 +61,7 @@
             <property name="unauthorizedUrl" value="/login"/>
             <property name="filterChainDefinitions">
                 <value>
+                    /repairBill/**=anon
                     /insert=anon
                     /register=anon
                     /signup=anon

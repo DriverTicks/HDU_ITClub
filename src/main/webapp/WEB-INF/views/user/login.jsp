@@ -53,7 +53,7 @@
 
 
 
-<jsp:include page="common/foot.jsp"></jsp:include>
+<jsp:include page="../common/foot.jsp"></jsp:include>
 
 
 <%--<footer class="copy-right">--%>
