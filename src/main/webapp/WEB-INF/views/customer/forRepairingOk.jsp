@@ -44,5 +44,6 @@
             <div class="clearfix"></div>
         </div>
     </div>
+    <jsp:include page="../common/foot.jsp"></jsp:include>
 </body>
 </html>
