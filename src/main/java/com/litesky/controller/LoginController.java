@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.apache.shiro.subject.Subject;
 
+import javax.mail.Session;
+
 
 @Controller
 @RequestMapping("/")
@@ -36,6 +38,9 @@ public class LoginController extends BaseController {
             return "redirect:/login";
         }
         UsernamePasswordToken usernamePasswordToken=new UsernamePasswordToken(user.getName(),user.getPassword());
+        usernamePasswordToken.setRememberMe(true);
+        org.apache.shiro.session.Session session=subject.getSession();
+        session.setAttribute("username",user.getName());
         try
         {
             subject.login(usernamePasswordToken);

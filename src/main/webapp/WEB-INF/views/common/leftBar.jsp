@@ -123,21 +123,31 @@
                     </li>
 
                     <li>
-                        <a href="inbox.html" class=" hvr-bounce-to-right"><i class="fa fa-navicon nav_icon"></i> <span class="nav-label">维修单</span> </a>
+                        <a href="/home/mybills" class=" hvr-bounce-to-right"><i class="fa fa-navicon nav_icon"></i> <span class="nav-label">维修单</span> </a>
                     </li>
 
                     <li>
                         <a href="/home/inbox" class=" hvr-bounce-to-right"><i class="fa fa-inbox nav_icon"></i> <span class="nav-label">消息中心</span> </a>
                     </li>
                     <li>
-                        <a href="#" class=" hvr-bounce-to-right"><i class="fa fa-cog nav_icon"></i> <span class="nav-label">平台设置</span></a>
+                        <a href="/home/setting" class=" hvr-bounce-to-right"><i class="fa fa-cog nav_icon"></i> <span class="nav-label">平台设置</span></a>
                     </li>
                     <li>
                         <a href="#" class=" hvr-bounce-to-right"><i class="fa fa-user-plus nav_icon"></i> <span class="nav-label">个人中心</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                            <li><a href="forms.html" class=" hvr-bounce-to-right"><i class="fa fa-user nav_icon"></i>个人资料</a></li>
-                            <li><a href="validation.html" class=" hvr-bounce-to-right"><i class="fa fa-sign-out nav_icon"></i>安全退出</a></li>
-                            <li><a href="validation.html" class=" hvr-bounce-to-right"><i class="fa fa-tint nav_icon"></i>状态</a></li>
+                            <li><a href="/home/personCenter" class=" hvr-bounce-to-right"><i class="fa fa-user nav_icon"></i>个人资料</a></li>
+                            <li><a href="/logout" class=" hvr-bounce-to-right"><i class="fa fa-sign-out nav_icon"></i>安全退出</a></li>
+                            <%--<li><a href="validation.html" class=" hvr-bounce-to-right"><i class="fa fa-tint nav_icon">--%>
+                            <%--</i>状态：--%>
+
+                                    <%--<label class="inline">--%>
+                                        <%--<input type="radio" name="state" checked>在线--%>
+                                    <%--</label>--%>
+                                    <%--<label class="inline">--%>
+                                        <%--<input type="radio" name="state">离线--%>
+                                    <%--</label>--%>
+
+                            <%--</a></li>--%>
                         </ul>
                     </li>
 

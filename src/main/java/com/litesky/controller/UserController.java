@@ -3,11 +3,11 @@ package com.litesky.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.litesky.model.User;
 import com.litesky.service.UserService;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.session.Session;
+import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.print.DocFlavor;
@@ -24,5 +24,13 @@ public class UserController {
     {
         System.out.println(user.getName());
         return userService.findUserByName(user.getName());
+    }
+
+    @RequestMapping(value = "/alterUserState",method = RequestMethod.POST)
+    public String alterUserState()
+    {
+        Subject subject= SecurityUtils.getSubject();
+        Session session=subject.getSession();
+        return null;
     }
 }

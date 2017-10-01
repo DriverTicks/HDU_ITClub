@@ -1,7 +1,11 @@
 package com.litesky.controller;
 
 import com.litesky.common.util.RepaireMan;
+import com.litesky.email.SendEmail;
+import com.litesky.model.Message;
 import com.litesky.model.RepairBill;
+import com.litesky.model.User;
+import com.litesky.service.EmailConfigService;
 import com.litesky.service.RepairBillService;
 import com.litesky.service.UserService;
 import org.springframework.stereotype.Controller;
@@ -24,6 +28,8 @@ public class  RepairBillController extends BaseController{
     @Resource
     private RepairBillService repairBillService;
 
+    @Resource
+    private EmailConfigService emailConfigService;
 
     @PostMapping("/insertBill")
 
@@ -36,7 +42,13 @@ public class  RepairBillController extends BaseController{
         if (code!=0)
         {
             modelAndView.setViewName("customer/forRepairingOk");
-            modelAndView.addObject(repaireMan.getUser());
+            User user=repaireMan.getUser();
+            modelAndView.addObject(user);
+            Message message=new Message();
+            message.setSubject("你收到了新的维修请求");
+            message.setContent("姓名："+repairBill.getName()+"性别："+repairBill.getGender()+"QQ:"+repairBill.getQQ());
+            SendEmail sendEmail=new SendEmail(emailConfigService.getConfig(),message,user.getEmail());
+            sendEmail.sendEmail();
             return modelAndView;
         }else
         {

@@ -64,7 +64,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <!--banner-->
             <div class="banner">
                 <h2>
-                    <a href="index.html">主页</a>
+                    <a href="/home/">主页</a>
                     <i class="fa fa-angle-right"></i>
                     <span>消息中心</span>
                 </h2>
@@ -1221,7 +1221,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <!---->
         <jsp:include page="../common/foot.jsp"></jsp:include>
 </div>
-<div class="clearfix"> </div>
+    <div class="clearfix"> </div>
 </div>
 
 <!---->

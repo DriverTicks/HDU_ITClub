@@ -18,7 +18,7 @@
 
     <select id="getAllUser" resultType="User">
           <![CDATA[
-          SELECT *FROM USER WHERE state = 1
+          SELECT *FROM USER WHERE state = 0
         ]]>
     </select>
 </mapper>

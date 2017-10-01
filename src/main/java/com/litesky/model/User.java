@@ -3,8 +3,13 @@ package com.litesky.model;
 import org.apache.ibatis.type.Alias;
 
 import javax.naming.Name;
+import java.io.Serializable;
+
 @Alias("user")
-public class User {
+public class User implements Serializable{
+    private static final long serialVersionUID = -5003372557969589947L;
+
+
     private int id;
     private String name;
     private String password;

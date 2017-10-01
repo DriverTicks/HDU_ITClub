@@ -48,6 +48,7 @@
             <property name="realm" ref="shiroRealm"/>
             <property name="sessionManager" ref="sessionManager"/>
             <property name="cacheManager" ref="shiroCacheManager"/>
+            <property name="rememberMeManager" ref="rememberMeManager"/>
         </bean>
 
         <!--自定义realm-->
@@ -65,6 +66,7 @@
                     /insert=anon
                     /register=anon
                     /signup=anon
+                    /home/mybill=anon
                     /login/** = anon
                     /test/** =anon
                     /advice_Email/** =anon
@@ -95,4 +97,16 @@
         <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor">
 
         </bean>
+
+    <!--rememberMe配置-->
+    <bean id="rememberMeCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+        <constructor-arg value="rememberMe"/>
+        <property name="httpOnly" value="true"/>
+        <property name="maxAge" value="604800"/>
+    </bean>
+    <!-- rememberMe管理器 -->
+    <bean id="rememberMeManager" class="org.apache.shiro.web.mgt.CookieRememberMeManager">
+        <property name="cipherKey" value="#{T(org.apache.shiro.codec.Base64).decode('4AvVhmFLUs0KTA3Kprsdag==')}" />
+        <property name="cookie" ref="rememberMeCookie" />
+    </bean>
 </beans>

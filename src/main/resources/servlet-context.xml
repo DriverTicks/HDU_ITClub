@@ -10,7 +10,7 @@
 
     <!--开启springMVC注解模式-->
     <mvc:annotation-driven/>
-
+    <mvc:resources mapping="/*" location="resources"/>
     <!--开启静态资源访问-->
     <mvc:default-servlet-handler/>
 

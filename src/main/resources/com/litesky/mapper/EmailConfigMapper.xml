@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.litesky.dao.EmailConfigDao">
+
+    <!--获取已启用的邮箱配置-->
+    <select id="getConfig" resultType="EmailConfig">
+        SELECT *FROM emailConfig WHERE isuse=0;
+    </select>
+    <!--更新邮箱配置-->
+    <update id="updateConfig" parameterType="EmailConfig">
+        UPDATE emailConfig
+        <trim prefix="set" suffixOverrides=",">
+            <if test="host!=null">host=#{host},</if>
+            <if test="procotol!=null">procotol=#{procotol},</if>
+            <if test="userName!=null">userName=#{userName},</if>
+            <if test="password!=null">password=#{password},</if>
+            <if test="updateTime!=null">updateTime=#{updateTime},</if>
+            <if test="isuse!=null">isuse=#{isuse},</if>
+        </trim>
+        WHERE id=#{id};
+    </update>
+
+    <!--删除邮箱配置-->
+    <delete id="deleteConfig" parameterType="int">
+        DELETE emailConfig WHERE id=#{id};
+    </delete>
+
+    <!--添加一条配置-->
+    <insert id="addConfig" parameterType="EmailConfig">
+        INSERT INTO emailConfig(host,userName,password,isuse) VALUES
+        (#{host},#{userName},#{password},#{isuse})
+    </insert>
+</mapper>
